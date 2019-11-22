@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     
     let cellIdentifier: String = "cell"
+    let customCellIdentifier: String = "customCell"
     
     let korean: [String] = ["가", "나", "다", "라", "마", "바", "사", "아", "지", "차", "카", "타", "파", "하"]
     
@@ -23,6 +24,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let dateFormatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateStyle = .medium
+        return formatter
+    }()
+    
+    let timeFormatter: DateFormatter = {
+        let formatter: DateFormatter = DateFormatter()
         formatter.timeStyle = .medium
         return formatter
     }()
@@ -58,16 +64,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
-        
         if indexPath.section < 2 {
+            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
             let text: String = indexPath.section == 0 ? korean[indexPath.row] : english[indexPath.row]
             cell.textLabel?.text = text
+            return cell
         } else {
-            cell.textLabel?.text = self.dateFormatter.string(from: self.dates[indexPath.row])
+            guard let cell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: self.customCellIdentifier, for: indexPath) as? CustomTableViewCell else {
+                preconditionFailure("테이블 뷰 셀 가져오기 실패")
+            }
+            
+            cell.leftLabel.text = self.dateFormatter.string(from: dates[indexPath.row])
+            cell.rightLabel.text = self.timeFormatter.string(from: dates[indexPath.row])
+            
+            return cell
         }
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
