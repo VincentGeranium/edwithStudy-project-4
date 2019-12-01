@@ -42,7 +42,7 @@
 		202E6487238D6D97001BF2A3 = {
 			isa = PBXGroup;
 			children = (
-				204A3C96238D9CA300A8E1D5 /* Friend.swift */,
+				20A59EAC2393A2DF004DB8FE /* FriendData */,
 				202E6492238D6D97001BF2A3 /* MyFriends */,
 				202E6491238D6D97001BF2A3 /* Products */,
 			);
@@ -68,6 +68,14 @@
 				202E64A1238D6D98001BF2A3 /* Info.plist */,
 			);
 			path = MyFriends;
+			sourceTree = "<group>";
+		};
+		20A59EAC2393A2DF004DB8FE /* FriendData */ = {
+			isa = PBXGroup;
+			children = (
+				204A3C96238D9CA300A8E1D5 /* Friend.swift */,
+			);
+			path = FriendData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
