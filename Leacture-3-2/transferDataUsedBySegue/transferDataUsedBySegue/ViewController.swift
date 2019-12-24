@@ -68,7 +68,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
             let text: String = indexPath.section == 0 ? korean[indexPath.row] : english[indexPath.row]
             cell.textLabel?.text = text
-            
             if indexPath.row == 1 {
                 cell.backgroundColor = UIColor.red
             } else {
@@ -107,7 +106,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         guard let cell: UITableViewCell = sender as? UITableViewCell else {
             return
         }
-        
+        print("\(cell.isSelected)")
         nextVC.textToSet = cell.textLabel?.text
     }
     
